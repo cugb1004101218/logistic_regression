@@ -72,6 +72,9 @@ class LR(object):
         for token in tokens[:-1]:
           self.feature_set.AddFeature(token, 1.0)
           feature_list.append(token)
+        # 加入正则项 防止过拟合
+        self.feature_set.AddFeature("##########", 1.0)
+        feature_list.append("##########")
         self.instance_list.append(Instance(feature_list, y))
         read_count += 1
         if read_count % 1000 == 0:

@@ -17,7 +17,8 @@ def LoadModel(feature_set, category_name):
 if __name__ == '__main__':
   feature_set = FeatureSet()
   LoadModel(feature_set, "美食")
-  test_case = ["","商城","苏宁","易购","国美"]
+  #test_case = ["##########","巧克力","红酒","美团","进口"]
+  test_case = ["##########","4g","移动","iphone"]
 
   feature_list = []
   for feature in test_case:

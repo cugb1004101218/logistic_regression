@@ -4,8 +4,8 @@ import sys
 import configure
 from lr_train import *
 
-def LoadModel(feature_set):
-  f = open(configure.output_model_file_path)
+def LoadModel(feature_set, category_name):
+  f = open(configure.output_model_file_path + category_name + '.txt')
   lines = f.readlines()
   f.close()
   for line in lines:
@@ -16,8 +16,8 @@ def LoadModel(feature_set):
 
 if __name__ == '__main__':
   feature_set = FeatureSet()
-  LoadModel(feature_set)
-  test_case = ["京东","商城","苏宁","易购","国美"]
+  LoadModel(feature_set, "美食")
+  test_case = ["","商城","苏宁","易购","国美"]
 
   feature_list = []
   for feature in test_case:

@@ -48,13 +48,14 @@ def MaximumLikelihoodEstimation(instance_list, feature_set):
   return mlh
 
 class LR(object):
-  def __init__(self, train_file_path, output_model_file_path, step_len, iteration_num):
+  def __init__(self, category_name, train_file_path, output_model_file_path, step_len, iteration_num):
+    self.category_name = category_name
     self.instance_list = []
     self.feature_set = FeatureSet()
     self.step_len = step_len
     self.iteration_num = iteration_num
     self.train_file_path = train_file_path
-    self.output_model_file_path = output_model_file_path
+    self.output_model_file_path = output_model_file_path + '/' + category_name + '.txt'
 
   def ReadTrainFile(self, train_file_path):
     self.instance_list = []
@@ -97,7 +98,7 @@ class LR(object):
 
   def OutputModel(self, output_model_file_path):
     output_model_file = open(output_model_file_path, 'w')
-    logging.info("output model to " + output_model_file_path)
+    logging.info("output model to " + output_model_file_path + '.txt')
     for literal in self.feature_set.features:
       output_model_file.write(literal + "\t"+ str(self.feature_set.features[literal].weight) + "\n")
     output_model_file.close()
@@ -108,7 +109,8 @@ class LR(object):
     self.OutputModel(self.output_model_file_path)
 
 if __name__ == '__main__':
-  lr = LR(configure.train_data_file_path,
+  lr = LR("美食",
+          configure.train_data_file_path,
           configure.output_model_file_path,
           configure.step_len,
           configure.iteration_num)
